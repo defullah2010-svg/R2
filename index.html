@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نظام تقارير أداء المعلمة</title>
+<title>نظام تقارير أداء المعلمةةة</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -11,12 +11,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'HelveticaNeueW23', Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'HelveticaNeueW23';
+  src: url('fonts/HelveticaNeueW23-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body, input, textarea, label, button, header, footer, .tab-content {
   font-family: 'HelveticaNeueW23', Arial, sans-serif;
-  margin:0;
-  padding:0;
   background:#f5f5f5;
 }
+
 header { background:#15445A; color:white; text-align:center; padding:10px; }
 header h1, header h2 { margin:3px 0; font-size:16px; }
 
@@ -35,10 +47,40 @@ label {
   text-align: center;
   background: transparent; /* اجعل الخلفية شفافة */
 }
-input, textarea { width:100%; padding:4px; border:1px solid #c2c1c2; border-radius:4px; margin-bottom:5px; box-sizing:border-box; font-size:12px; text-align:center; }
+
+input, textarea {
+  width:100%;
+  padding:4px;
+  border:1px solid #c2c1c2;
+  border-radius:4px;
+  margin-bottom:5px;
+  box-sizing:border-box;
+  font-size:12px;
+  text-align:center;
+}
+
 textarea { min-height:40px; }
-button { background:#0c8380; color:white; border:none; padding:8px 10px; margin:5px 0; cursor:pointer; border-radius:6px; width:100%; font-size:14px; font-weight:bold; }
-footer { text-align:center; padding:10px; color:black; font-weight:bold; font-size:12px; }
+
+button { 
+  background:#0c8380; 
+  color:white; 
+  border:none; 
+  padding:8px 10px; 
+  margin:5px 0; 
+  cursor:pointer; 
+  border-radius:6px; 
+  width:100%; 
+  font-size:14px; 
+  font-weight:bold; 
+}
+
+footer { 
+  text-align:center; 
+  padding:10px; 
+  color:black; 
+  font-weight:bold; 
+  font-size:12px; 
+}
 
 @media print {
   body { background:none !important; }
@@ -51,33 +93,37 @@ footer { text-align:center; padding:10px; color:black; font-weight:bold; font-si
   body, input, textarea, label, button, header, footer, .tab-content {
     font-family: 'HelveticaNeueW23', Arial, sans-serif;
   }
-}
-</style>
+}</style>
 </head>
 <body>
 
+<!-- محتوى صفحة النظام يظهر مباشرة -->
 <div id="mainContent">
-<header>
-<h1>نظام تقارير أداء المعلمة</h1>
-</header>
+  <header>
+    <h1>نظام تقارير أداء المعلمة</h1>
+  </header>
 
-<div class="tabs">
-<button class="tab-button active" onclick="openTab('daily', event)">نموذج التقرير اليومي</button>
-<button class="tab-button" onclick="openTab('weekly', event)">نموذج التقرير الأسبوعي</button>
-<button class="tab-button" onclick="openTab('monthly', event)">نموذج التقرير الشهري</button>
-</div>
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab('daily')">نموذج التقرير اليومي</button>
+    <button class="tab-button" onclick="openTab('weekly')">نموذج التقرير الأسبوعي</button>
+    <button class="tab-button" onclick="openTab('monthly')">نموذج التقرير الشهري</button>
+  </div>
 
-<!-- التقرير اليومي -->
+  <!-- التقرير اليومي -->
 <div id="daily" class="tab-content active">
 <label><h2>التقرير اليومي</h2></label>
+
 <div style="display:flex; gap:10px; justify-content:center; margin-bottom:30px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>إدارة تعليم منطقة</label><input type="text">
+    <label>إدارة تعليم منطقة</label>
+    <input type="text">
   </div>
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>اسم المدرسة</label><input type="text">
+    <label>اسم المدرسة</label>
+    <input type="text">
   </div>
 </div>
+
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:5px;">
   <div><label>اسم المعلمة</label><input type="text"></div>
   <div><label>التخصص</label><input type="text"></div>
@@ -88,42 +134,56 @@ footer { text-align:center; padding:10px; color:black; font-weight:bold; font-si
   <div><label>التاريخ</label><input type="text" id="dailyDate" placeholder="DD-MM-YYYY"></div>
   <div><label>الحصة</label><input type="text"></div>
 </div>
+
 <label>أهداف الدرس</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
   <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>نسبة تحقق أهداف الدرس</label><input type="text">
-<label>ملاحظات حول الطالبات</label>
+
+<label>ملاحظات حول تفاعل الطالبات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>التحديات الصفية</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
+<!-- حقل مديرة المدرسة -->
 <div style="display:flex; justify-content:center; margin-bottom:10px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>مديرة المدرسة</label><input type="text">
+    <label>مديرة المدرسة</label>
+    <input type="text">
   </div>
 </div>
+
 <input type="file" multiple accept="image/*" onchange="storeImages(event,'daily')">
 <div id="daily-counter" style="font-size:12px; color:#15445a; font-weight:bold;">عدد الصور المرفوعة: 0 / 4</div>
 <div id="daily-preview" style="display:flex; gap:5px; flex-wrap:wrap; margin-top:5px;"></div>
+
 <button onclick="printPDF('daily')">طباعة التقرير اليومي</button>
 </div>
 
 <!-- التقرير الأسبوعي -->
 <div id="weekly" class="tab-content">
+<!-- محتوى التقرير الأسبوعي كما في الكود الأصلي -->
 <label><h2>التقرير الأسبوعي</h2></label>
+
 <div style="display:flex; gap:10px; justify-content:center; margin-bottom:10px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>إدارة تعليم منطقة</label><input type="text">
+    <label>إدارة تعليم منطقة</label>
+    <input type="text">
   </div>
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>اسم المدرسة</label><input type="text">
+    <label>اسم المدرسة</label>
+    <input type="text">
   </div>
 </div>
+
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <div><label>اسم المعلمة</label><input type="text"></div>
   <div><label>التخصص</label><input type="text"></div>
@@ -134,51 +194,71 @@ footer { text-align:center; padding:10px; color:black; font-weight:bold; font-si
   <div><label>الأسبوع</label><input type="text"></div>
   <div><label>التاريخ</label><input type="text" id="weeklyDate" placeholder="DD-MM-YYYY"></div>
 </div>
+
 <label>أهم الدروس المنفذة</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
   <input type="text"><input type="text"><input type="text">
 </div>
-<label>نقاط القوة</label>
+
+<label>أبرز نقاط القوة لدى الطالبات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
-<label>نقاط الضعف</label>
+
+<label>أبرز نقاط الضعف لدى الطالبات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
-<label>التحديات التعليمية</label>
+
+<label>أبرز التحديات التعليمية</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>الإجراءات العلاجية</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
+<label>أثر الإجراءات على تقدم الطالبات</label>
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
+  <input type="text"><input type="text"><input type="text">
+</div>
+
 <label>توصيات الأسبوع القادم</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
+<!-- حقل مديرة المدرسة -->
 <div style="display:flex; justify-content:center; margin-bottom:10px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>مديرة المدرسة</label><input type="text">
+    <label>مديرة المدرسة</label>
+    <input type="text">
   </div>
 </div>
+
 <input type="file" multiple accept="image/*" onchange="storeImages(event,'weekly')">
 <div id="weekly-counter" style="font-size:12px; color:#15445a; font-weight:bold;">عدد الصور المرفوعة: 0 / 4</div>
 <div id="weekly-preview" style="display:flex; gap:5px; flex-wrap:wrap; margin-top:5px;"></div>
+
 <button onclick="printPDF('weekly')">طباعة التقرير الأسبوعي</button>
 </div>
 
 <!-- التقرير الشهري -->
 <div id="monthly" class="tab-content">
+<!-- محتوى التقرير الشهري كما في الكود الأصلي -->
 <label><h2>التقرير الشهري</h2></label>
+
 <div style="display:flex; gap:10px; justify-content:center; margin-bottom:1px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>إدارة تعليم منطقة</label><input type="text">
+    <label>إدارة تعليم منطقة</label>
+    <input type="text">
   </div>
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>اسم المدرسة</label><input type="text">
+    <label>اسم المدرسة</label>
+    <input type="text">
   </div>
 </div>
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:5px;">
@@ -192,51 +272,65 @@ footer { text-align:center; padding:10px; color:black; font-weight:bold; font-si
   <div><label>التاريخ</label><input type="text" id="monthlyDate" placeholder="DD-MM-YYYY"></div>
   <div><label>نسبة إنجاز الخطة</label><input type="text"></div>
 </div>
-<label>أبرز التحسينات</label>
+
+<label>أبرز التحسينات في أداء الطالبات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
-<label>القضايا المستمرة</label>
+
+<label>القضايا المستمرة التي تحتاج متابعة</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
-<label>خطط المعالجة</label>
+
+<label>خطط المعالجة المقترحة</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>الطالبات المتميزات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
+  <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>الخطة الإثرائية للطالبات المتميزات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>الطالبات المخفقات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
+  <input type="text"><input type="text"><input type="text">
 </div>
+
 <label>الخطة العلاجية للطالبات المخفقات</label>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:5px;">
   <input type="text"><input type="text"><input type="text">
 </div>
+
+<!-- حقل مديرة المدرسة -->
 <div style="display:flex; justify-content:center; margin-bottom:10px;">
   <div style="display:flex; flex-direction:column; align-items:center; width:200px;">
-    <label>مديرة المدرسة</label><input type="text">
+    <label>مديرة المدرسة</label>
+    <input type="text">
   </div>
 </div>
+
 <input type="file" multiple accept="image/*" onchange="storeImages(event,'monthly')">
 <div id="monthly-counter" style="font-size:12px; color:#15445a; font-weight:bold;">عدد الصور المرفوعة: 0 / 4</div>
 <div id="monthly-preview" style="display:flex; gap:5px; flex-wrap:wrap; margin-top:5px;"></div>
+
 <button onclick="printPDF('monthly')">طباعة التقرير الشهري</button>
 </div>
 
 <footer>تصميم : أ.ضيف الله الطويرقي   0543559220 </footer>
-
 </div>
 
 <script>
 let uploadedImages = {};
+
 function openTab(tabId){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-button').forEach(el=>el.classList.remove('active'));
@@ -296,11 +390,7 @@ function renderPreview(tabId){
     btn.style.borderRadius="50%";
     btn.style.cursor="pointer";
     btn.style.fontSize="10px";
-    btn.onclick = ()=>{
-      uploadedImages[tabId].splice(index,1);
-      updateCounter(tabId);
-      renderPreview(tabId);
-    };
+    btn.onclick = ()=>{ uploadedImages[tabId].splice(index,1); updateCounter(tabId); renderPreview(tabId); };
     container.appendChild(img);
     container.appendChild(btn);
     preview.appendChild(container);
