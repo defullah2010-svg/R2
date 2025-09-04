@@ -317,7 +317,23 @@ function renderPreview(tabId){
     img.src=src;
     img.style.width="70px"; img.style.height="70px"; img.style.objectFit="cover"; img.style.border="1px solid #ccc"; img.style.borderRadius="4px";
     const btn=document.createElement("button");
-    btn.textContent="❌"; btn.style.position="absolute"; btn.style.top="-5px"; btn.style.right="-5px"; btn.style.background="red"; btn.style.color="white"; btn.style.border="none"; btn.style.borderRadius="50%"; btn.style.cursor="pointer"; btn.style.fontSize="10px";
+    btn.textContent = "❌";
+btn.style.position = "absolute";
+btn.style.top = "2px";
+btn.style.left = "50%";
+btn.style.transform = "translateX(-50%)";
+btn.style.width = "18px";
+btn.style.height = "18px";
+btn.style.fontSize = "10px";
+btn.style.background = "red";
+btn.style.color = "white";
+btn.style.border = "2px solid white";
+btn.style.borderRadius = "50%";
+btn.style.cursor = "pointer";
+btn.style.display = "flex";
+btn.style.alignItems = "center";
+btn.style.justifyContent = "center";
+
     btn.onclick=()=>{ uploadedImages[tabId].splice(index,1); updateCounter(tabId); renderPreview(tabId); saveForm(tabId); };
     container.appendChild(img); container.appendChild(btn); preview.appendChild(container);
   });
